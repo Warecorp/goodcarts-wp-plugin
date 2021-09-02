@@ -22,20 +22,8 @@ if (!class_exists('Goodcarts_Integrations')) {
     private $tokenizer;
 
     function __construct() {
-      $ENV = getenv_docker('WORDPRESS_ENV', 'production');
-      if ($ENV == 'development') { 
-        // Dev env
-        $this->gc_integrations_url = 'https://goodcarts-integrations.ngrok.io/';
-        $this->gc_url = 'https://goodcarts.ngrok.io/';
-      } else if ($ENV == 'staging') { 
-        // Staging env
-        $this->gc_integrations_url = 'https://integrations.staging.goodcarts.co/';
-        $this->gc_url = 'https://my.staging.goodcarts.co/';
-      } else { 
-        // Production env
-        $this->gc_integrations_url = 'https://integrations.goodcarts.co/';
-        $this->gc_url = 'https://my.goodcarts.co/';
-      }
+      $this->gc_integrations_url = getenv_docker('GC_INTEGRATION_URL', 'https://integrations.goodcarts.co');
+      $this->gc_url = getenv_docker('GC_URL', 'https://my.goodcarts.co');
       
       $this->tokenizer = new Goodcarts_Token();
       // add_filter('determine_current_user', [$this, 'determine_current_user_filter']);
@@ -101,11 +89,11 @@ if (!class_exists('Goodcarts_Integrations')) {
       }
       $token = $this->tokenizer->set_token_for_user(get_current_user_id());
       $api_url = get_rest_url(null);
-      $this->gc_url = $this->gc_integrations_url . 'integrations/?platform=woocommerce&token=' . $token . '&api_url=' . $api_url;
+      $gci_url = $this->gc_integrations_url . '/integrations/?platform=woocommerce&token=' . $token . '&api_url=' . $api_url;
       ?>
         <div class="wrap" style="display: flex; flex-direction: column; align-items: stretch; min-height: 100vh;">
           <iframe title="GoodCarts Settings" 
-            src="<?php echo esc_url($this->gc_url) ?>"
+            src="<?php echo esc_url($gci_url) ?>"
             name="app-iframe" 
             style="position: relative; border: none; width: 100%; flex: 1 1 0%; display: flex;">
           </iframe>
@@ -128,7 +116,7 @@ if (!class_exists('Goodcarts_Integrations')) {
             this.lS=function(s){ var head=document.head || document.getElementsByTagName("head" )[0] || document.documentElement; var script=document.createElement("script");script.async="async";script.src=s;head.insertBefore(script ,head.firstChild);},
             this.gc=function(){return document.getElementById(this.htmlElementId);};
             this.start=function() { var r=[];for(e in this.params){if(typeof(e)==='string'){r.push(e+'='+encodeURIComponent(this.params[e]));}}r.push('method=main');r.push('jsc=iGCCpnObj');
-            this.lS('<?php echo $this->gc_url ?>api/v1/wrapper?'+r.join('&'));}
+            this.lS('<?php echo $this->gc_url ?>/api/v1/wrapper?'+r.join('&'));}
           };
         var iGCCpnObj = null;
       </script>
