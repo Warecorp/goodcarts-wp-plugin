@@ -22,8 +22,8 @@ if (!class_exists('Goodcarts_Integrations')) {
     private $tokenizer;
 
     function __construct() {
-      $this->gc_integrations_url = getenv_docker('GC_INTEGRATION_URL', 'https://integrations.goodcarts.co');
-      $this->gc_url = getenv_docker('GC_URL', 'https://my.goodcarts.co');
+      $this->gc_integrations_url = getenv('GC_INTEGRATION_URL', true) ? getenv('GC_INTEGRATION_URL', true) : 'https://integrations.goodcarts.co';
+      $this->gc_url = getenv('GC_URL', true) ? getenv('GC_URL', true) : 'https://my.goodcarts.co';
       
       $this->tokenizer = new Goodcarts_Token();
       // add_filter('determine_current_user', [$this, 'determine_current_user_filter']);
