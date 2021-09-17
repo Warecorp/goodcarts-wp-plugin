@@ -22,7 +22,8 @@ if (!class_exists('Goodcarts_Integrations')) {
     private $tokenizer;
 
     function __construct() {
-      $this->gc_integrations_url = getenv('GC_INTEGRATION_URL', true) ? getenv('GC_INTEGRATION_URL', true) : 'https://integrations.goodcarts.co';
+      $this->debug = false;
+      $this->gc_integrations_url = getenv('GC_INTEGRATION_URL', true) ? getenv('GC_INTEGRATION_URL', true) : 'https://apps.goodcarts.co';
       $this->gc_url = getenv('GC_URL', true) ? getenv('GC_URL', true) : 'https://my.goodcarts.co';
       
       $this->tokenizer = new Goodcarts_Token();
@@ -39,6 +40,7 @@ if (!class_exists('Goodcarts_Integrations')) {
 
 
     function write_log ( $log )  {
+      if (!$this->debug) return;
       if ( is_array( $log ) || is_object( $log ) ) {
         error_log( print_r( $log, true ) );
       } else {
@@ -211,6 +213,7 @@ if (!class_exists('Goodcarts_Integrations')) {
 
     function clean_up_data() {
       delete_option('gc_hash');
+      delete_option('gctoken');
       delete_option('goodcarts_wc_auth');
       delete_option('goodcarts_api_user');
     }
@@ -220,13 +223,13 @@ if (!class_exists('Goodcarts_Integrations')) {
      * We use it to determine the current user from the access token in the Authorization header.
      * If no Authorization header exists, just return the default result.
      */
-    function determine_current_user_filter($user_id) {
+    function determine_current_user_filter($uid) {
       $this->write_log("==============================");
       $this->write_log("determine_current_user_filter");
-      $this->write_log("User id is $user_id");
+      $this->write_log("User id is $uid");
       // If we use wp-cli we have no headers to look for
       if (php_sapi_name() === 'cli') {
-        return $user_id;
+        return $uid;
       }
  
       /**
@@ -256,31 +259,31 @@ if (!class_exists('Goodcarts_Integrations')) {
         // 7 = strlen('Bearer ');
         $access_token = substr($authHeader, 7);
         $this->write_log("Get user by access_token $access_token");
-        $user_id = $this->tokenizer->get_user_id_by_token($access_token) || false;
-        $this->write_log("Got user_id $user_id");
-        return $user_id;
+        $uid = $this->tokenizer->get_user_id_by_token($access_token) || false;
+        $this->write_log("Got user_id $uid");
+        return $uid;
       }
-      $this->write_log("Found no user from header $user_id");
-      return $user_id;
+      $this->write_log("Found no user from header $uid");
+      return $uid;
     }
 
     // Checks that user has permissions to work with API resource
     function api_permissions_check() {
       $this->write_log("======================");
       $this->write_log("api_permissions_check");
-      $user_id = $this->determine_current_user_filter(null);
-      $this->write_log("User ID is $user_id");
-      if ($user_id) {
-        $this->write_log("get_user_by ID $user_id");
-        $user = get_user_by('id', intval($user_id));
+      $uid = $this->determine_current_user_filter(null);
+      $this->write_log("User ID is $uid");
+      if ($uid) {
+        $this->write_log("get_user_by ID $uid");
+        $user = get_user_by('id', intval($uid));
         if ( !empty($user) ) {
-          $this->write_log("Found user for ID $user_id");
+          $this->write_log("Found user for ID $uid");
         } else {
-          $this->write_log("No user found for ID $user_id");
+          $this->write_log("No user found for ID $uid");
         }
       }
       // Restrict endpoint to only users who have the capability.
-      if ( $user_id && !empty($user) ) {
+      if ( $uid && !empty($user) ) {
         if ( !$user->has_cap( 'manage_options' ) ) {
           return new WP_Error( 'rest_forbidden', esc_html__( 'You are not authorized to work with this API.', 'goodcarts' ), array( 'status' => 401 ) );
         }
