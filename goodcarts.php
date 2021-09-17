@@ -272,7 +272,7 @@ if (!class_exists('Goodcarts_Integrations')) {
       $this->write_log("User ID is $user_id");
       if ($user_id) {
         $this->write_log("get_user_by ID $user_id");
-        $user = get_user_by('id', 1*$user_id);
+        $user = get_user_by('id', intval($user_id));
         if ( !empty($user) ) {
           $this->write_log("Found user for ID $user_id");
         } else {
