@@ -259,7 +259,7 @@ if (!class_exists('Goodcarts_Integrations')) {
         // 7 = strlen('Bearer ');
         $access_token = substr($authHeader, 7);
         $this->write_log("Get user by access_token $access_token");
-        $uid = $this->tokenizer->get_user_id_by_token($access_token) || false;
+        $uid = $this->tokenizer->get_user_id_by_token($access_token);
         $this->write_log("Got user_id $uid");
         return $uid;
       }
