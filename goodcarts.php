@@ -94,11 +94,13 @@ if (!class_exists('Goodcarts_Integrations')) {
       $gci_url = $this->gc_integrations_url . '/integrations/?platform=woocommerce&token=' . $token . '&api_url=' . $api_url;
       ?>
         <div class="wrap" style="display: flex; flex-direction: column; align-items: stretch; min-height: 100vh;">
-          <iframe title="GoodCarts Settings" 
-            src="<?php echo esc_url($gci_url) ?>"
-            name="app-iframe" 
-            style="position: relative; border: none; width: 100%; flex: 1 1 0%; display: flex;">
-          </iframe>
+          <script type="text/javascript">
+            var gcIframeStr = '<iframe title="GoodCarts Settings" ' +
+              'src="<?php echo esc_url($gci_url) ?>"' +
+              'name="app-iframe" ' +
+              'style="position: relative; border: none; width: 100%; flex: 1 1 0%; display: flex;"></iframe>'
+            document.write(gcIframeStr);
+          </script>  
         </div>
       <?php
     }
