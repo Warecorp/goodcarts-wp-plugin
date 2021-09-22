@@ -17,7 +17,7 @@ class Goodcarts_Token {
     self::$DEBUG && error_log("==============================get_user_id_by_token $token");
     $tokens = get_option(self::$TOKEN_OPTION_NAME, []);
     self::$DEBUG && error_log(var_export($tokens, true));
-    $uid_from_token = $tokens[$token] ? $tokens[$token] : false;
+    $uid_from_token = array_key_exists($token, $tokens) && $tokens[$token] ? $tokens[$token] : false;
     self::$DEBUG && error_log("==============================user_id is $uid_from_token");
     return $uid_from_token;
   }
@@ -27,8 +27,8 @@ class Goodcarts_Token {
   public function set_token_for_user($uid) {
     self::$DEBUG && error_log("==============================set_token_for_user $uid");
     $tokens = get_option(self::$TOKEN_OPTION_NAME, []);
-    $token = $tokens[$uid];
-    if ($token) {
+    if (array_key_exists($uid, $tokens)) {
+      $token = $tokens[$uid];
       unset($tokens[$uid]);
       unset($tokens[$token]);
     }

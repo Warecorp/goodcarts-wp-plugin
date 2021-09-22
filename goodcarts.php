@@ -27,8 +27,8 @@ if (!class_exists('Goodcarts_Integrations')) {
       $this->gc_url = getenv('GC_URL', true) ? getenv('GC_URL', true) : 'https://my.goodcarts.co';
       
       $this->tokenizer = new Goodcarts_Token();
-      // add_filter('determine_current_user', [$this, 'determine_current_user_filter']);
-      add_action('admin_init', [$this, 'check_woocommerce_activated'] );
+      add_action('admin_init', [$this, 'check_requirements'] );
+      add_action('admin_init', [$this, 'check_https_used'] );
       add_action('admin_menu', [$this, 'add_to_menu']);
       add_action('woocommerce_thankyou', [$this, 'tracking_banner'], 1 );
       add_action('woocommerce_thankyou', [$this, 'tracking'] );
@@ -48,22 +48,42 @@ if (!class_exists('Goodcarts_Integrations')) {
       }
     }
 
-    function check_woocommerce_activated() {
-      if ( is_admin() && current_user_can( 'activate_plugins' ) &&  !is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
-        add_action( 'admin_notices', [ $this, 'need_wc_notice' ] );
-
+    function check_requirements() {
+      if ($this->check_https_used() && $this->check_woocommerce_activated()) {
+        add_action('admin_notices', [ $this, 'installation_notice' ]);
+      } else {
         deactivate_plugins( plugin_basename( __FILE__ ) ); 
-
         if ( isset( $_GET['activate'] ) ) {
           unset( $_GET['activate'] );
         }
-      } else {
-        add_action('admin_notices', [ $this, 'installation_notice' ]);
       }
+    }
+    
+    function check_https_used() {
+      $api_url = get_rest_url(null);
+      
+      if ( stripos($api_url, 'https://' ) !== 0 ) {
+        add_action( 'admin_notices', [ $this, 'need_https_notice' ] );
+        return false;
+      }
+      return true;
+    }
+    
+    function check_woocommerce_activated() {
+      if ( is_admin() && current_user_can( 'activate_plugins' ) &&  !is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
+        add_action( 'admin_notices', [ $this, 'need_wc_notice' ] );
+        return false;
+      }
+      return true;
     }
 
     function need_wc_notice(){
       ?><div class="error"><p>Sorry, but Goodcarts requires the WooCommerce plugin to be installed and active.</p></div><?php
+    }
+    function need_https_notice(){
+      ?><div class="error">
+        <p>Sorry, but Goodcarts requires site to use only https. We don't support http - it's not secure.</p>
+      </div><?php
     }
     
     function installation_notice() {
