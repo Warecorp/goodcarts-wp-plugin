@@ -27,8 +27,7 @@ if (!class_exists('Goodcarts_Integrations')) {
       $this->gc_url = getenv('GC_URL', true) ? getenv('GC_URL', true) : 'https://my.goodcarts.co';
       
       $this->tokenizer = new Goodcarts_Token();
-      add_action('admin_init', [$this, 'check_requirements'] );
-      add_action('admin_init', [$this, 'check_https_used'] );
+      add_action('admin_init', [$this, 'check_requirements']);
       add_action('admin_menu', [$this, 'add_to_menu']);
       register_activation_hook(__FILE__, [$this, 'add_activated_notice']);
       add_action('woocommerce_thankyou', [$this, 'tracking_banner'], 1 );
@@ -53,7 +52,7 @@ if (!class_exists('Goodcarts_Integrations')) {
     }
 
     function check_requirements() {
-      if (!$this->check_https_used() || $this->check_woocommerce_activated()) {
+      if (!$this->is_https_used() || $this->is_woocommerce_activated()) {
         deactivate_plugins( plugin_basename( __FILE__ ) ); 
         if ( isset( $_GET['activate'] ) ) {
           unset( $_GET['activate'] );
@@ -61,7 +60,7 @@ if (!class_exists('Goodcarts_Integrations')) {
       }
     }
     
-    function check_https_used() {
+    function is_https_used() {
       $api_url = get_rest_url(null);
       
       if ( stripos($api_url, 'https://' ) !== 0 ) {
@@ -71,7 +70,7 @@ if (!class_exists('Goodcarts_Integrations')) {
       return true;
     }
     
-    function check_woocommerce_activated() {
+    function is_woocommerce_activated() {
       if ( is_admin() && current_user_can( 'activate_plugins' ) &&  !is_plugin_active( 'woocommerce/woocommerce.php' ) ) {
         add_action( 'admin_notices', [ $this, 'need_wc_notice' ] );
         return false;
