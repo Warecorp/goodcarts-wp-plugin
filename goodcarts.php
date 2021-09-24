@@ -25,11 +25,12 @@ if (!class_exists('Goodcarts_Integrations')) {
       $this->debug = false;
       $this->gc_integrations_url = getenv('GC_INTEGRATION_URL', true) ? getenv('GC_INTEGRATION_URL', true) : 'https://apps.goodcarts.co';
       $this->gc_url = getenv('GC_URL', true) ? getenv('GC_URL', true) : 'https://my.goodcarts.co';
-      
+      $this->activated_key = 'GC_Activated';
+
       $this->tokenizer = new Goodcarts_Token();
       add_action('admin_init', [$this, 'check_requirements']);
       add_action('admin_menu', [$this, 'add_to_menu']);
-      register_activation_hook(__FILE__, [$this, 'add_activated_notice']);
+      add_action('activate_plugin', [$this, 'add_activated_notice']);
       add_action('woocommerce_thankyou', [$this, 'tracking_banner'], 1 );
       add_action('woocommerce_thankyou', [$this, 'tracking'] );
       add_action('rest_api_init', [$this, 'register_api_routes']);
@@ -39,7 +40,7 @@ if (!class_exists('Goodcarts_Integrations')) {
     }
 
     function add_activated_notice() {
-      add_action('admin_notices', [ $this, 'installation_notice' ]);
+      add_option( $this->activated_key, '1' );
     }
 
     function write_log ( $log )  {
@@ -52,7 +53,9 @@ if (!class_exists('Goodcarts_Integrations')) {
     }
 
     function check_requirements() {
-      if (!$this->is_https_used() || $this->is_woocommerce_activated()) {
+      if ($this->is_https_used() && $this->is_woocommerce_activated()) {
+        add_action( 'admin_notices', [ $this, 'installation_notice' ] );
+      } else {
         deactivate_plugins( plugin_basename( __FILE__ ) ); 
         if ( isset( $_GET['activate'] ) ) {
           unset( $_GET['activate'] );
@@ -88,15 +91,16 @@ if (!class_exists('Goodcarts_Integrations')) {
     }
     
     function installation_notice() {
-      $goodcarts_option_key = get_option('goodcarts_option_key');
+      $show_notification = get_option($this->activated_key);
       
       $is_plugins_page = (substr($_SERVER["PHP_SELF"], -11) == 'plugins.php');
       
-      if ($is_plugins_page && !$goodcarts_option_key && function_exists("admin_url")) {
+      if ($is_plugins_page && $show_notification == '1' && function_exists("admin_url")) {
         echo '<div class="error"><p><strong>' .
         sprintf(__('Go through <a href="%s">GoodCarts installation Wizard</a> to enable plugin functionality.', 'goodcarts'),
         admin_url('admin.php?page=goodcarts')) .
         '</strong></p></div>';
+        delete_option($this->activated_key);
       }
     }
 
