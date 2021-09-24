@@ -30,6 +30,7 @@ if (!class_exists('Goodcarts_Integrations')) {
       add_action('admin_init', [$this, 'check_requirements'] );
       add_action('admin_init', [$this, 'check_https_used'] );
       add_action('admin_menu', [$this, 'add_to_menu']);
+      register_activation_hook(__FILE__, [$this, 'add_activated_notice']);
       add_action('woocommerce_thankyou', [$this, 'tracking_banner'], 1 );
       add_action('woocommerce_thankyou', [$this, 'tracking'] );
       add_action('rest_api_init', [$this, 'register_api_routes']);
@@ -38,6 +39,9 @@ if (!class_exists('Goodcarts_Integrations')) {
       add_action('deactivate_plugin', [$this, 'clean_up_data']);
     }
 
+    function add_activated_notice() {
+      add_action('admin_notices', [ $this, 'installation_notice' ]);
+    }
 
     function write_log ( $log )  {
       if (!$this->debug) return;
@@ -49,9 +53,7 @@ if (!class_exists('Goodcarts_Integrations')) {
     }
 
     function check_requirements() {
-      if ($this->check_https_used() && $this->check_woocommerce_activated()) {
-        add_action('admin_notices', [ $this, 'installation_notice' ]);
-      } else {
+      if (!$this->check_https_used() || $this->check_woocommerce_activated()) {
         deactivate_plugins( plugin_basename( __FILE__ ) ); 
         if ( isset( $_GET['activate'] ) ) {
           unset( $_GET['activate'] );
