@@ -243,22 +243,14 @@ if (!class_exists('Goodcarts_Integrations')) {
       delete_option('gctoken');
       delete_option('goodcarts_wc_auth');
       delete_option('goodcarts_api_user');
+      delete_option('goodcarts_gc_hash');
     }
 
     /**
-     * By default, this filter determines the current user from the cookie.
      * We use it to determine the current user from the access token in the Authorization header.
-     * If no Authorization header exists, just return the default result.
+     * If no Authorization header exists, just returns null.
      */
-    function determine_current_user_filter($uid) {
-      $this->write_log("==============================");
-      $this->write_log("determine_current_user_filter");
-      $this->write_log("User id is $uid");
-      // If we use wp-cli we have no headers to look for
-      if (php_sapi_name() === 'cli') {
-        return $uid;
-      }
- 
+    function get_current_user_id() {
       /**
        * Make sure to add the lines below to .htaccess
        * otherwise Apache may strip out the auth header.
@@ -290,15 +282,15 @@ if (!class_exists('Goodcarts_Integrations')) {
         $this->write_log("Got user_id $uid");
         return $uid;
       }
-      $this->write_log("Found no user from header $uid");
-      return $uid;
+      $this->write_log("Found no user from header");
+      return null;
     }
 
     // Checks that user has permissions to work with API resource
     function api_permissions_check() {
       $this->write_log("======================");
       $this->write_log("api_permissions_check");
-      $uid = $this->determine_current_user_filter(null);
+      $uid = $this->get_current_user_id();
       $this->write_log("User ID is $uid");
       if ($uid) {
         $this->write_log("get_user_by ID $uid");
