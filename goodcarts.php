@@ -136,6 +136,8 @@ if (!class_exists('Goodcarts_Integrations')) {
     // =============================================================================
 
     function tracking_banner() {
+      $gc_hash = get_option("goodcarts_gc_hash");
+      if (!$gc_hash) return;
       echo '<div id="gc-container" style="display: block; clear: both; margin-bottom: 2em;"></div>'
       ?>
       <script type="text/javascript">
@@ -157,6 +159,8 @@ if (!class_exists('Goodcarts_Integrations')) {
     // =============================================================================
 
     function tracking( $order_id ) {
+      $gc_hash = get_option("goodcarts_gc_hash");
+      if (!$gc_hash) return;
       $order = WC_Order_Factory::get_order( $order_id );
       
       $order_number = $order->get_id();
