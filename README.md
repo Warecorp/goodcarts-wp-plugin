@@ -76,7 +76,8 @@ For more answers to questions, see the [FAQ on our website](https://goodcarts.co
 
 == Screenshots ==
 
-1. GoodCarts “recycles” post-purchase traffic into new customers for your store 
+1. ![GoodCarts recycles post-purchase traffic into new customers for your store](assets/screenshot-1.jpg)
+GoodCarts “recycles” post-purchase traffic into new customers for your store 
 2. Simple “Thank You Banner” appears across all our member store’s receipts - high CTR powers the discovery of your store by new customers
 3. Sample discount page with other offers from stores in your “Circle” 
 4. Activate the GoodCarts plugin
