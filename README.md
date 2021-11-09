@@ -98,11 +98,12 @@ For more answers to questions, see the [FAQ on our website](https://goodcarts.co
 
 = Automatic Installation =
 
-Automatic installation is the easiest -- WordPress handles the file transfer, and you wonâ€™t leave your web browser. For an automatic install of GoodCarts, log in to your WordPress dashboard, navigate to the Plugins menu, and click â€œAdd New.â€
+Automatic installation is the easiest -- WordPress handles the file transfer, and you won’t leave your web browser. For an automatic install of GoodCarts, log in to your WordPress dashboard, navigate to the Plugins menu, and click ‘Add New’
  
-In the search field type â€œGoodCarts,â€ then click â€œSearch Plugins.â€ Once youâ€™ve found us,  you can install it by Click â€œInstall Now,â€ and WordPress will take it from there.
+In the search field type ‘GoodCarts’, then click ‘Search Plugins’. Once you've found us,  you can install it by clicking ‘Install Now’, and WordPress will take it from there.
 
 Activate the GoodCarts plugin and then go to the admin / GoodCarts section and follow the instructions. 
+
 
 = Manual Installation =
 
