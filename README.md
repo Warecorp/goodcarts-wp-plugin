@@ -49,7 +49,7 @@ See how GoodCarts works from a customer’s perspective.
 https://www.youtube.com/watch?v=KB85JGOWIV0
 
 
-## Frequently Asked Questions ==
+## Frequently Asked Questions
 
 ### What kinds of stores will your store cross-promote?
 
@@ -77,17 +77,28 @@ For more answers to questions, see the [FAQ on our website](https://goodcarts.co
 
 1. ![GoodCarts recycles post-purchase traffic into new customers for your store](assets/screenshot-1.jpg)
 GoodCarts “recycles” post-purchase traffic into new customers for your store 
-2. Simple “Thank You Banner” appears across all our member store’s receipts - high CTR powers the discovery of your store by new customers
-3. Sample discount page with other offers from stores in your “Circle” 
-4. Activate the GoodCarts plugin
-5. Create your store’s GoodCarts account or login if you have one
-6. Connect GoodCarts to your WooCommerce plugin
-7. Select the Circle where you have the best bit (all stores are reviewed and approved to best circle - per the FAQ, no Adult/Mature product stores are served by GoodCarts)
-8. Creating your discount offer is the CRUCIAL step - use a great product image
-9. Send traffic to your homepage or a dedicated page 
-10. Optional - Customize your Thank You Banner text, button color and text
-11. Main Dashboard - What you will see after you finish setup
-12. Optional - Blocklist - Once your store is approved you may block your exiting customers from seeing offers from direct competitors (which blocks your’s from being seen from them as well)
+2. ![Simple `Thank You Banner` appears across all our member store’s receipts](assets/screenshot-2.jpg)
+Simple “Thank You Banner” appears across all our member store’s receipts - high CTR powers the discovery of your store by new customers
+3. ![Sample discount page with other offers from stores in your “Circle”](assets/screenshot-3.jpg)
+Sample discount page with other offers from stores in your “Circle” 
+4. ![Activate the GoodCarts plugin](assets/screenshot-4.jpg)
+Activate the GoodCarts plugin
+5. ![Create your store’s GoodCarts account or login if you have one](assets/screenshot-5.jpg)
+Create your store’s GoodCarts account or login if you have one
+6. ![Connect GoodCarts to your WooCommerce plugin](assets/screenshot-6.jpg)
+Connect GoodCarts to your WooCommerce plugin
+7. ![Select the Circle where you have the best bit](assets/screenshot-7.jpg)
+Select the Circle where you have the best bit (all stores are reviewed and approved to best circle - per the FAQ, no Adult/Mature product stores are served by GoodCarts)
+8. ![Creating your discount offer is the CRUCIAL step - use a great product image](assets/screenshot-8.jpg)
+Creating your discount offer is the CRUCIAL step - use a great product image
+9. ![Send traffic to your homepage or a dedicated page ](assets/screenshot-9.jpg)
+Send traffic to your homepage or a dedicated page 
+10. ![Optional - Customize your Thank You Banner text, button color and text](assets/screenshot-10.jpg)
+Optional - Customize your Thank You Banner text, button color and text
+11. ![Main Dashboard - What you will see after you finish setup](assets/screenshot-11.jpg)
+Main Dashboard - What you will see after you finish setup
+12. ![Optional - Blocklist - Once your store is approved you may block your exiting customers from seeing offers from direct competitors](assets/screenshot-12.jpg)
+Optional - Blocklist - Once your store is approved you may block your exiting customers from seeing offers from direct competitors (which blocks your’s from being seen from them as well)
 
 ## Installation
 
