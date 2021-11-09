@@ -1,4 +1,5 @@
-=== Goodcarts ===
+# Goodcarts
+
 Contributors: GoodCarts
 Tags: WooCommerce, woo, e-commerce, ecommerce, free, traffic, marketing, promotion, coupons, discounts, sales, store  
 Requires at least: 5.5
@@ -8,18 +9,19 @@ Stable tag: 1.0.0
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
-Banner Image
+## Banner Image
 
 GoodCarts is a free traffic plugin for ecommerce retail stores on WooCommerce. Post-purchase cross-promotion delivers new customer sales at no cost.
 
-== Description ==
+## Description
+
 GoodCarts is the free post-purchase engine that gets your ecommerce brand discovered.
 
 Choose the “circle” that best describes your ecommerce business and receive free traffic from other GoodCarts network stores in your circle (Shop-for-Good/sustainability, Made in the USA, small business entrepreneurs, etc.) 
 
 We uniquely “recycle” post-purchase customer traffic with a customized page of discount offers from participating ecommerce retailers and DTC brands. Your store gets discovered for free.
 
-= Simple Set Up in Minutes =
+## Simple Set Up in Minutes
 
 Install the GoodCarts WordPress plugin designed to work with WooCommerce
 Create your GoodCarts account from within the plugin and give it permissions to connect with WooCommerce when prompted.
@@ -32,8 +34,7 @@ Try it to see just how quickly your discount offer and featured product image at
 GoodCarts’ one year retention rate for our member stores is more than 90% with our Shop-for-Good circle of brands. Why? GoodCarts members enjoy an average of more than 10% discount offer redemption rate. 
 
 
-
-= For More = 
+### For More
 
 See [GoodCarts.co/woocommerce](https://GoodCarts.co/woocommerce) and our general GoodCart.co for more details. We serve multiple ecommerce platforms, so the first link is your best WordPress/WooCommerce specific advice.
 
@@ -41,40 +42,38 @@ When a customer makes a purchase from your ecommerce store, a modest Thank You b
 
 In the future, GoodCarts will offer premium options including featured discounts and additional traffic opportunities. 
 
-
- 
-== Video Demo ==
+### Video Demo
 
 See how GoodCarts works from a customer’s perspective.
 
 https://www.youtube.com/watch?v=KB85JGOWIV0
 
 
-== Frequently Asked Questions ==
+## Frequently Asked Questions ==
 
-= What kinds of stores will your store cross-promote? =
+### What kinds of stores will your store cross-promote?
 
 GoodCarts connects stores in “Circles” based on themes like shop-for-good/sustainable products, Made in USA, Black-owned, Premium DTC, and a wider Founders Circle for small businesses. We carefully review stores to make sure they are in the best fit circle..
 
-= What kinds of stores aren’t allowed? =
+### What kinds of stores aren’t allowed?
 
 None of the GoodCarts Circles allow stores selling adult/mature products, alcohol, weapons, etc. Only the Founders Circle for everyday small business retailers accepts stores that dropship products from outside of their home continent.
 
-= Can my store join from anywhere? =
+### Can my store join from anywhere?
 
 Our initial focus is on stores that ship standard to the United States. Additional Circles are planned for other parts of the world. [Contact us](https://goodcarts.co/contact) and ask to  join a waiting list for your part of the world.
 
-= Is “Free” too good to be true? =
+### Is “Free” too good to be true?
 
 It is both good AND true! GoodCarts is powered by reciprocity - all members in our network present their post-checkout customers the opportunity to view discounts from other brands in the same Circle. By recycling your post-purchase traffic, you’re earning  free exposure and traffic in return. 
 
-= Can I choose which stores to cross-promote? =
+### Can I choose which stores to cross-promote?
 
 Yes, once you are approved into your Circle, find the Blocklist feature under More Options. This  allows you to pick stores with whom you DO NOT wish to share traffic. It is typically used to avoid promoting a direct competitor. 
 
 For more answers to questions, see the [FAQ on our website](https://goodcarts.co/faq).
 
-== Screenshots ==
+## Screenshots
 
 1. ![GoodCarts recycles post-purchase traffic into new customers for your store](assets/screenshot-1.jpg)
 GoodCarts “recycles” post-purchase traffic into new customers for your store 
@@ -90,14 +89,14 @@ GoodCarts “recycles” post-purchase traffic into new customers for your store
 11. Main Dashboard - What you will see after you finish setup
 12. Optional - Blocklist - Once your store is approved you may block your exiting customers from seeing offers from direct competitors (which blocks your’s from being seen from them as well)
 
-== Installation ==
+## Installation
 
-= Minimum Requirements =
+### Minimum Requirements
 
 * WooCommerce 4.5 or higher including 5.8
 * WordPress 5.5 to 5.8 have been tested with WooCommerce versions above
 
-= Automatic Installation =
+### Automatic Installation
 
 Automatic installation is the easiest -- WordPress handles the file transfer, and you won’t leave your web browser. For an automatic install of GoodCarts, log in to your WordPress dashboard, navigate to the Plugins menu, and click ‘Add New’
  
@@ -106,7 +105,7 @@ In the search field type ‘GoodCarts’, then click ‘Search Plugins’. Once 
 Activate the GoodCarts plugin and then go to the admin / GoodCarts section and follow the instructions. 
 
 
-= Manual Installation =
+### Manual Installation
 
 Manual installation method requires downloading the GoodCarts plugin [here](https://github.com/Warecorp/goodcarts-wp-plugin/archive/refs/heads/main.zip) and uploading it to your web server via your favorite FTP application. The WordPress codex contains [instructions on how to do this here](https://wordpress.org/support/article/managing-plugins/#manual-plugin-installation).
 
@@ -114,10 +113,10 @@ Manual installation method requires downloading the GoodCarts plugin [here](http
 2. Activate the plugin through the Plugins menu in WordPress
 3. Then go to the admin / GoodCarts section and follow the instructions.
 
-= Updating =
+### Updating 
 
 Automatic updates should work smoothly, but we recommend that you backup your site.
 
-== Changelog ==
-= 1.0 =
+## Changelog
+### 1.0
 * Initial release
