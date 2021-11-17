@@ -23,8 +23,8 @@ if (!class_exists('Goodcarts_Integrations')) {
 
     function __construct() {
       $this->debug = false;
-      $this->gc_integrations_url = getenv('GC_INTEGRATION_URL', true) ? getenv('GC_INTEGRATION_URL', true) : 'https://apps.goodcarts.co';
-      $this->gc_url = getenv('GC_URL', true) ? getenv('GC_URL', true) : 'https://my.goodcarts.co';
+      $this->gc_integrations_url = defined('GC_INTEGRATION_URL') ? GC_INTEGRATION_URL : 'https://apps.goodcarts.co';
+      $this->gc_url = defined('GC_URL') ? GC_URL : 'https://my.goodcarts.co';
       $this->activated_key = 'GC_Activated';
 
       $this->tokenizer = new Goodcarts_Token();
