@@ -3,8 +3,8 @@
  * Plugin Name: GoodCarts Integration for WooCommerce
  * Plugin URI: https://goodcarts.co/woocommerce/
  * Description: Connect your woo-site with GoodCarts with this simple plugin.
- * Tested up to: 5.8
- * Version: 1.0.0
+ * Tested up to: 5.9.1
+ * Version: 1.0.1
  * Author: Warecorp Inc.
  * License: GPLv2 or later
  * License URI: http://www.gnu.org/licenses/gpl-2.0.html
@@ -308,7 +308,7 @@ if (!class_exists('Goodcarts_Integrations')) {
       // Restrict endpoint to only users who have the capability.
       if ( $uid && !empty($user) ) {
         if ( !$user->has_cap( 'manage_options' ) ) {
-          return new WP_Error( 'rest_forbidden', esc_html__( 'You are not authorized to work with this API.', 'goodcarts' ), array( 'status' => 401 ) );
+          return new WP_Error( 'rest_forbidden', esc_html__( 'You are not authorized to work with this API. User should have permissions to manage site options.', 'goodcarts' ), array( 'status' => 403 ) );
         }
       } else {
         return new WP_Error( 'rest_forbidden', esc_html__( 'You are not authenticated.', 'goodcarts' ), array( 'status' => 401 ) );
